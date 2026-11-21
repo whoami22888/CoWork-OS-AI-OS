@@ -211,3 +211,8 @@ models/.cache/
 # Prebuilt llama.cpp binaries (download with scripts/run-lfm3-server.sh)
 tools/llama.cpp/llama-b*/
 tools/llama.cpp/*.tar.gz
+
+# Local Phase 1 runtime state (SQLite, settings, mutation ledgers)
+proofs/phase1/cowork-data/
+proofs/phase1/npm-install.log
+proofs/phase1/build-cli.log

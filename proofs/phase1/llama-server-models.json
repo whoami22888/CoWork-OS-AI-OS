@@ -1,0 +1,61 @@
+{
+    "models": [
+        {
+            "name": "LFM3-1.7B-Uncensored",
+            "model": "LFM3-1.7B-Uncensored",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+                ""
+            ],
+            "capabilities": [
+                "completion"
+            ],
+            "parameters": "",
+            "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "",
+                "families": [
+                    ""
+                ],
+                "parameter_size": "",
+                "quantization_level": ""
+            }
+        }
+    ],
+    "object": "list",
+    "data": [
+        {
+            "id": "LFM3-1.7B-Uncensored",
+            "aliases": [
+                "LFM3-1.7B-Uncensored"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+                "input_modalities": [
+                    "text"
+                ],
+                "output_modalities": [
+                    "text"
+                ]
+            },
+            "created": 1795229011,
+            "owned_by": "llamacpp",
+            "meta": {
+                "vocab_type": 2,
+                "n_vocab": 128000,
+                "n_ctx": 4096,
+                "n_ctx_train": 262144,
+                "n_embd": 2048,
+                "n_params": 1728801600,
+                "size": 1123960064,
+                "ftype": "Q4_K - Medium"
+            }
+        }
+    ]
+}

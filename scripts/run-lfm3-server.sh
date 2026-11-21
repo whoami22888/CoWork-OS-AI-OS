@@ -24,5 +24,5 @@ exec "$BIN_DIR/llama-server" \
   --host "$HOST" \
   --port "$PORT" \
   --alias LFM3-1.7B-Uncensored \
-  --ctx-size "${LLAMA_CTX:-4096}" \
+  --ctx-size "${LLAMA_CTX:-32768}" \
   --parallel 1

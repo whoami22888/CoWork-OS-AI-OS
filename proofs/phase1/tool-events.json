@@ -1,0 +1,313 @@
+[
+  {
+    "seq": 11,
+    "legacy": "task_analysis",
+    "payload": {
+      "taskType": "general",
+      "hasAdditionalContext": false,
+      "legacyType": "task_analysis"
+    }
+  },
+  {
+    "seq": 26,
+    "legacy": "plan_created",
+    "payload": {
+      "plan": {
+        "description": "Execute task",
+        "steps": [
+          {
+            "id": "1",
+            "description": "Create a new file named hello-from-jarvis.txt in the workspace root. Put exactly this line in it: Consider it done. Then reply with the full path of the file you created. Use your file tools. Do not run a shell command unless a file tool is unavailable.",
+            "kind": "primary",
+            "status": "pending"
+          }
+        ]
+      },
+      "legacyType": "plan_created"
+    }
+  },
+  {
+    "seq": 37,
+    "legacy": "required_tool_inference_decision",
+    "payload": {
+      "taskId": "098a969e-32d9-4dd9-81b6-0ca55946be0e",
+      "stepId": "1",
+      "requiredTools": [
+        "run_command",
+        "write_file"
+      ],
+      "mode": "mutation_required",
+      "contractReason": "step_requires_artifact_mutation",
+      "verificationMode": "none",
+      "inferredCues": {
+        "hasWriteIntent": true,
+        "hasReadOnlyIntent": false,
+        "hasSummaryCue": false,
+        "scaffoldIntent": false,
+        "hasArtifactCue": true,
+        "hasArtifactExtensionMention": true,
+        "hasExplicitDirectoryCue": false,
+        "hasNonRootParent": false,
+        "targetPathCount": 1,
+        "artifactPreparationDeferred": false
+      },
+      "targetPaths": [
+        "hello-from-jarvis.txt"
+      ],
+      "legacyType": "required_tool_inference_decision"
+    }
+  },
+  {
+    "seq": 44,
+    "legacy": "tool_call",
+    "payload": {
+      "tool": "write_file",
+      "input": {
+        "path": "hello-from-jarvis.txt",
+        "content": "Consider it done."
+      },
+      "toolUseId": "7pmbVxLLydZgJXXs2XLMHuz6IhTPx6B6",
+      "toolCallIndex": 1,
+      "toolBatchPhase": "step",
+      "groupId": "tools:step:1:1795229273225:3",
+      "legacyType": "tool_call"
+    }
+  },
+  {
+    "seq": 50,
+    "legacy": "file_created",
+    "payload": {
+      "path": "hello-from-jarvis.txt",
+      "size": 17,
+      "lineCount": 1,
+      "contentPreview": "Consider it done.",
+      "previewTruncated": false,
+      "language": "txt",
+      "existed": true,
+      "linesAdded": 1,
+      "linesRemoved": 1,
+      "legacyType": "file_created"
+    }
+  },
+  {
+    "seq": 51,
+    "legacy": "tool_result",
+    "payload": {
+      "tool": "write_file",
+      "result": {
+        "success": true,
+        "path": "hello-from-jarvis.txt"
+      },
+      "envelope": {
+        "toolUseId": "write_file:1795229273239",
+        "toolName": "write_file",
+        "status": "success",
+        "modelPayload": "{\"success\":true,\"path\":\"hello-from-jarvis.txt\"}",
+        "userSummary": "write_file completed",
+        "structuredData": {
+          "success": true,
+          "path": "hello-from-jarvis.txt"
+        },
+        "evidence": [
+          {
+            "type": "file",
+            "label": "File",
+            "value": "hello-from-jarvis.txt",
+            "extra": {
+              "operation": "write"
+            }
+          },
+          {
+            "type": "runtime_log",
+            "label": "Policy",
+            "value": "final decision: allow",
+            "extra": {
+              "source": "write_file"
+            }
+          }
+        ],
+        "retryable": false,
+        "policyTrace": {
+          "toolName": "write_file",
+          "finalDecision": "allow",
+          "entries": [
+            {
+              "stage": "task_restrictions",
+              "decision": "allow",
+              "reason": null,
+              "metadata": null,
+              "timestamp": 1795229273243
+            },
+            {
+              "stage": "workspace_quick_access",
+              "decision": "allow",
+              "reason": null,
+              "metadata": null,
+              "timestamp": 1795229273243
+            },
+            {
+              "stage": "availability",
+              "decision": "skip",
+              "reason": null,
+              "metadata": null,
+              "timestamp": 1795229273243
+            },
+            {
+              "stage": "mode_and_domain",
+              "decision": "allow",
+              "reason": null,
+              "metadata": {
+                "mode": "execute",
+                "domain": "general"
+              },
+              "timestamp": 1795229273243
+            },
+            {
+              "stage": "workspace_script",
+              "decision": "allow",
+              "reason": null,
+              "metadata": null,
+              "timestamp": 1795229273244
+            },
+            {
+              "stage": "agent_security",
+              "decision": "skip",
+              "reason": null,
+              "metadata": null,
+              "timestamp": 1795229273244
+            },
+            {
+              "stage": "permissions",
+              "decision": "allow",
+              "reason": "The active access profile allows this operation within its granted boundary.",
+              "metadata": {
+                "reasonType": "other",
+                "runtimeApprovalType": null,
+                "requestedPermissionApprovalType": "workspace_write",
+                "resolvedPermissionApprovalType": "workspace_write",
+                "scopePreview": "write_file on path /workspace/CoWork-OS-AI-OS/proofs/jarvis-workspace/hello-from-jarvis.txt",
+                "matchedRuleSource": null,
+                "matchedScopeKind": null,
+                "policyVersion": "boundary",
+                "shadowDecision": null
+              },
+              "timestamp": 1795229273249
+            },
+            {
+              "stage": "approval",
+              "decision": "allow",
+              "reason": null,
+              "metadata": null,
+              "timestamp": 1795229273249
+            }
+          ]
+        },
+        "contextMutation": null,
+        "uiHints": null,
+        "telemetry": null
+      },
+      "policyTrace": {
+        "toolName": "write_file",
+        "finalDecision": "allow",
+        "entries": [
+          {
+            "stage": "task_restrictions",
+            "decision": "allow",
+            "reason": null,
+            "metadata": null,
+            "timestamp": 1795229273243
+          },
+          {
+            "stage": "workspace_quick_access",
+            "decision": "allow",
+            "reason": null,
+            "metadata": null,
+            "timestamp": 1795229273243
+          },
+          {
+            "stage": "availability",
+            "decision": "skip",
+            "reason": null,
+            "metadata": null,
+            "timestamp": 1795229273243
+          },
+          {
+            "stage": "mode_and_domain",
+            "decision": "allow",
+            "reason": null,
+            "metadata": {
+              "mode": "execute",
+              "domain": "general"
+            },
+            "timestamp": 1795229273243
+          },
+          {
+            "stage": "workspace_script",
+            "decision": "allow",
+            "reason": null,
+            "metadata": null,
+            "timestamp": 1795229273244
+          },
+          {
+            "stage": "agent_security",
+            "decision": "skip",
+            "reason": null,
+            "metadata": null,
+            "timestamp": 1795229273244
+          },
+          {
+            "stage": "permissions",
+            "decision": "allow",
+            "reason": "The active access profile allows this operation within its granted boundary.",
+            "metadata": {
+              "reasonType": "other",
+              "runtimeApprovalType": null,
+              "requestedPermissionApprovalType": "workspace_write",
+              "resolvedPermissionApprovalType": "workspace_write",
+              "scopePreview": "write_file on path /workspace/CoWork-OS-AI-OS/proofs/jarvis-workspace/hello-from-jarvis.txt",
+              "matchedRuleSource": null,
+              "matchedScopeKind": null,
+              "policyVersion": "boundary",
+              "shadowDecision": null
+            },
+            "timestamp": 1795229273249
+          },
+          {
+            "stage": "approval",
+            "decision": "allow",
+            "reason": null,
+            "metadata": null,
+            "timestamp": 1795229273249
+          }
+        ]
+      },
+      "toolUseId": "7pmbVxLLydZgJXXs2XLMHuz6IhTPx6B6",
+      "toolCallIndex": 1,
+      "toolBatchPhase": "step",
+      "groupId": "tools:step:1:1795229273225:3",
+      "legacyType": "tool_result"
+    }
+  },
+  {
+    "seq": 64,
+    "legacy": "step_failed",
+    "payload": {
+      "stepId": "1",
+      "step": {
+        "id": "1",
+        "description": "Create a new file named hello-from-jarvis.txt in the workspace root. Put exactly this line in it: Consider it done. Then reply with the full path of the file you created. Use your file tools. Do not run a shell command unless a file tool is unavailable.",
+        "kind": "primary",
+        "status": "failed",
+        "startedAt": 1795229244297,
+        "error": "Step required tool contract was not satisfied. Missing successful calls for: run_command.",
+        "completedAt": 1795229314858
+      },
+      "groupId": null,
+      "status": "failed",
+      "actor": "agent",
+      "message": "Step required tool contract was not satisfied. Missing successful calls for: run_command.",
+      "reason": "Step required tool contract was not satisfied. Missing successful calls for: run_command.",
+      "legacyType": "step_failed"
+    }
+  }
+]

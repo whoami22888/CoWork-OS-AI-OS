@@ -1,0 +1,37 @@
+{
+    "choices": [
+        {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "I'm online and ready to work.",
+                "reasoning_content": "The user asks to confirm I'm online and ready to work in one sentence. Simple acknowledgment, no need for extra detail. Just state that I'm here and ready."
+            }
+        }
+    ],
+    "created": 1795229013,
+    "model": "LFM3-1.7B-Uncensored",
+    "system_fingerprint": "b12600-29b52d398",
+    "object": "chat.completion",
+    "usage": {
+        "completion_tokens": 44,
+        "prompt_tokens": 48,
+        "total_tokens": 92,
+        "prompt_tokens_details": {
+            "cached_tokens": 0
+        }
+    },
+    "id": "chatcmpl-B4IejyZfLUjB9JmbQ8MMMWMybDFXmR6q",
+    "timings": {
+        "cache_n": 0,
+        "prompt_n": 48,
+        "prompt_ms": 455.974,
+        "prompt_per_token_ms": 9.499458333333333,
+        "prompt_per_second": 105.26916008368897,
+        "predicted_n": 44,
+        "predicted_ms": 1450.447,
+        "predicted_per_token_ms": 33.731325581395346,
+        "predicted_per_second": 29.646033257333777
+    }
+}
