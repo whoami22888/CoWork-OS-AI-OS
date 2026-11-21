@@ -1,0 +1,87 @@
+# Jarvis local stack: llama.cpp (OpenAI-compatible /v1) + CoWork OS headless/CLI.
+# Build and run on a machine with Docker. This development box has no Docker daemon.
+#
+#   cd /path/to/CoWork-OS-AI-OS
+#   # models must already be in ./models (gitignored GGUFs)
+#   docker compose -f deploy/jarvis/docker-compose.yml build
+#   docker compose -f deploy/jarvis/docker-compose.yml up
+#
+# CoWork Control Plane: 127.0.0.1:18789
+# llama-server:        127.0.0.1:8080/v1
+#
+# To force the tiny LFM3 tier:
+#   JARVIS_MODEL_FILE=LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf \
+#   JARVIS_MODEL_ALIAS=LFM3-1.7B-Uncensored \
+#   JARVIS_CTX=32768 \
+#   docker compose -f deploy/jarvis/docker-compose.yml up
+#
+# Keep approvals on. Do not set a full-access profile here.
+
+name: jarvis-cowork
+
+services:
+  llama:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    restart: unless-stopped
+    command:
+      - -m
+      - /models/${JARVIS_MODEL_FILE:-mlabonne_Qwen3-8B-abliterated-Q4_K_M.gguf}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+      - --alias
+      - ${JARVIS_MODEL_ALIAS:-Qwen3-8B-abliterated}
+      - --ctx-size
+      - "${JARVIS_CTX:-16384}"
+      - --parallel
+      - "1"
+    volumes:
+      - ../../models:/models:ro
+    ports:
+      - "127.0.0.1:8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc 'exec 3<>/dev/tcp/127.0.0.1/8080'"]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+      start_period: 60s
+    security_opt:
+      - no-new-privileges:true
+
+  cowork:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      llama:
+        condition: service_healthy
+    environment:
+      COWORK_USER_DATA_DIR: /data
+      COWORK_BOOTSTRAP_WORKSPACE_PATH: /workspace
+      COWORK_BOOTSTRAP_WORKSPACE_NAME: main
+      COWORK_IMPORT_ENV_SETTINGS: "1"
+      COWORK_CONTROL_PLANE_HOST: 0.0.0.0
+      COWORK_CONTROL_PLANE_PORT: "18789"
+      COWORK_CONTROL_PLANE_BIND_CONTEXT: container
+      LLAMA_BASE_URL: http://llama:8080/v1
+      JARVIS_MODEL_ALIAS: ${JARVIS_MODEL_ALIAS:-Qwen3-8B-abliterated}
+    volumes:
+      - cowork_data:/data
+      - cowork_workspace:/workspace
+      - ../../resources/jarvis-persona:/persona:ro
+    ports:
+      - "127.0.0.1:18789:18789"
+    entrypoint:
+      - /usr/local/bin/docker-entrypoint.sh
+      - /app/deploy/jarvis/entrypoint-configure.sh
+    command: ["sh", "-lc", "xvfb-run -a node bin/coworkd.js"]
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  cowork_data:
+  cowork_workspace:

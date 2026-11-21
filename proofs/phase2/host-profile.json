@@ -1,0 +1,12 @@
+{
+  "profile": "HIGH",
+  "os_name": "Linux",
+  "machine": "x86_64",
+  "cpu_cores": 8,
+  "memory_total_mb": 16779,
+  "memory_available_mb": 6923,
+  "disk_free_mb": 100133,
+  "vram_total_mb": 0,
+  "vram_used_mb": 0,
+  "vram_source": null
+}

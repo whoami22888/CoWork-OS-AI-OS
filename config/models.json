@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "bin_dir": "tools/llama.cpp/llama-b12600"
+  },
+  "selection": {
+    "strategy": "largest-fitting",
+    "fallback": "tiny",
+    "require_file": true
+  },
+  "tiers": [
+    {
+      "id": "tiny",
+      "name": "LFM3-1.7B-Uncensored",
+      "role": "always-on",
+      "enabled": true,
+      "file": "models/LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf",
+      "alias": "LFM3-1.7B-Uncensored",
+      "min_ram_mb": 4000,
+      "min_vram_mb": 0,
+      "ctx_size": 32768,
+      "notes": "Liquid AI LFM3 1.7B Q4_K_M. Always-on / low-memory tier."
+    },
+    {
+      "id": "main",
+      "name": "Qwen3-8B-abliterated",
+      "role": "default",
+      "enabled": true,
+      "file": "models/mlabonne_Qwen3-8B-abliterated-Q4_K_M.gguf",
+      "alias": "Qwen3-8B-abliterated",
+      "hf_repo": "bartowski/mlabonne_Qwen3-8B-abliterated-GGUF",
+      "hf_file": "mlabonne_Qwen3-8B-abliterated-Q4_K_M.gguf",
+      "sha256": "361557e69ad101ee22b1baf427283b7ddcf81bc7532b8cee8ac2c6b4d1b81ead",
+      "size_bytes": 5027784288,
+      "min_ram_mb": 12000,
+      "min_vram_mb": 0,
+      "ctx_size": 16384,
+      "notes": "bartowski imatrix Q4_K_M of mlabonne/Qwen3-8B-abliterated. Mid-size uncensored fallback. Apache-2.0, ungated."
+    },
+    {
+      "id": "large",
+      "name": "scale-up-hook",
+      "role": "scale-up",
+      "enabled": false,
+      "file": null,
+      "alias": null,
+      "min_ram_mb": 32000,
+      "min_vram_mb": 16000,
+      "ctx_size": 16384,
+      "notes": "Hook only. Drop a 14B–32B GGUF here, set file + enabled=true, when the host has enough VRAM or RAM. Not bundled."
+    }
+  ]
+}
