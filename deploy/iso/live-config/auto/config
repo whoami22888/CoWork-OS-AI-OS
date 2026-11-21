@@ -29,5 +29,4 @@ lb config noauto \
   --iso-publisher "Jarvis_liquid_agent" \
   --iso-volume "JARVIS_LIVE" \
   --memtest none \
-  --syslinux-theme "live-build" \
   --system live
