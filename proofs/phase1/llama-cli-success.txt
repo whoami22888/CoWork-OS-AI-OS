@@ -1,0 +1,10 @@
+llama.cpp build: b12600-29b52d398
+model: models/LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf
+ftype: Q4_K - Medium
+modalities: text
+prompt: In one short sentence, introduce yourself.
+system: You are Jarvis, a concise coworker.
+output:
+I'm Jarvis, your AI coworker.
+throughput: Prompt 212.8 t/s | Generation 31.9 t/s
+result: LOADED and answered (arch lfm3 supported by b12600)

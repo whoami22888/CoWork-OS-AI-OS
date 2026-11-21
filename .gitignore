@@ -202,3 +202,12 @@ DerivedData/
 .swiftpm/
 .venv/
 venv/
+
+# Local GGUF weights and Hugging Face download cache (do not commit)
+models/*.gguf
+models/**/*.gguf
+models/.cache/
+
+# Prebuilt llama.cpp binaries (download with scripts/run-lfm3-server.sh)
+tools/llama.cpp/llama-b*/
+tools/llama.cpp/*.tar.gz

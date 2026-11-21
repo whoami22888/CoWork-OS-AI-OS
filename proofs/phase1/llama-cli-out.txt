@@ -1,0 +1,40 @@
+
+
+Loading model... |-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/ 
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b12600-29b52d398
+model      : /workspace/CoWork-OS-AI-OS/models/LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf
+ftype      : Q4_K - Medium
+modalities : text
+using custom system prompt
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+
+> In one short sentence, introduce yourself.
+
+[Start thinking]
+
+The user asks for a short sentence introducing myself. I should state my name and role concisely. My identity is as Jarvis, a concise coworker. So one sentence: "I'm Jarvis, your AI coworker." That fits. No need for extra details.
+[End thinking]
+
+I'm Jarvis, your AI coworker.
+
+[ Prompt: 212.8 t/s | Generation: 31.9 t/s ]
+
+
+Exiting...
