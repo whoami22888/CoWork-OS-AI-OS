@@ -1,0 +1,23 @@
+{
+  "host": {
+    "profile": "HIGH",
+    "device_class": "desktop",
+    "os_name": "Linux",
+    "machine": "x86_64",
+    "cpu_cores": 8,
+    "memory_total_mb": 16779,
+    "memory_available_mb": 2583,
+    "disk_free_mb": 100085,
+    "vram_total_mb": 0,
+    "vram_used_mb": 0,
+    "vram_source": null,
+    "simulated": false
+  },
+  "device_class": "desktop",
+  "tier": "main",
+  "alias": "Qwen3-8B-abliterated",
+  "model_path": "/workspace/CoWork-OS-AI-OS/models/mlabonne_Qwen3-8B-abliterated-Q4_K_M.gguf",
+  "ctx_size": 16384,
+  "role": "desktop-default",
+  "reason": "largest enabled tier whose RAM/VRAM thresholds this host meets"
+}

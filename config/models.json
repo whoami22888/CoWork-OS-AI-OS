@@ -18,15 +18,16 @@
       "enabled": true,
       "file": "models/LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf",
       "alias": "LFM3-1.7B-Uncensored",
-      "min_ram_mb": 4000,
+      "min_ram_mb": 2500,
       "min_vram_mb": 0,
-      "ctx_size": 32768,
-      "notes": "Liquid AI LFM3 1.7B Q4_K_M. Always-on / low-memory tier."
+      "ctx_size": 8192,
+      "notes": "Liquid AI LFM3 1.7B Q4_K_M. Always-on / phone tier. Default ctx is 8192 for 8 GB-class devices; desktop may raise ctx via selector.",
+      "ctx_size_desktop": 32768
     },
     {
       "id": "main",
       "name": "Qwen3-8B-abliterated",
-      "role": "default",
+      "role": "desktop-default",
       "enabled": true,
       "file": "models/mlabonne_Qwen3-8B-abliterated-Q4_K_M.gguf",
       "alias": "Qwen3-8B-abliterated",
@@ -37,7 +38,7 @@
       "min_ram_mb": 12000,
       "min_vram_mb": 0,
       "ctx_size": 16384,
-      "notes": "bartowski imatrix Q4_K_M of mlabonne/Qwen3-8B-abliterated. Mid-size uncensored fallback. Apache-2.0, ungated."
+      "notes": "bartowski imatrix Q4_K_M of mlabonne/Qwen3-8B-abliterated. Mid-size uncensored fallback. Apache-2.0, ungated. Opt-in on Linxr/phone with JARVIS_ALLOW_MAIN=1; not recommended on an S23."
     },
     {
       "id": "large",
@@ -49,7 +50,23 @@
       "min_ram_mb": 32000,
       "min_vram_mb": 16000,
       "ctx_size": 16384,
-      "notes": "Hook only. Drop a 14B–32B GGUF here, set file + enabled=true, when the host has enough VRAM or RAM. Not bundled."
+      "notes": "Hook only. Drop a 14B\u201332B GGUF here, set file + enabled=true, when the host has enough VRAM or RAM. Not bundled."
     }
-  ]
+  ],
+  "device_classes": {
+    "phone": {
+      "description": "arm64/CPU-only host with under 10 GB RAM (e.g. Linxr VM on a Galaxy S23). Always-on tier is LFM3 1.7B.",
+      "max_tier": "tiny",
+      "ctx_size_override": 8192,
+      "match": {
+        "arch": [
+          "aarch64",
+          "arm64",
+          "armv8l"
+        ],
+        "max_ram_mb": 10239,
+        "max_vram_mb": 0
+      }
+    }
+  }
 }

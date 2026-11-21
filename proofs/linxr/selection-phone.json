@@ -1,0 +1,23 @@
+{
+  "host": {
+    "profile": "LOW",
+    "device_class": "phone",
+    "os_name": "Linux",
+    "machine": "aarch64",
+    "cpu_cores": 8,
+    "memory_total_mb": 8000,
+    "memory_available_mb": 3500,
+    "disk_free_mb": 10000,
+    "vram_total_mb": 0,
+    "vram_used_mb": 0,
+    "vram_source": null,
+    "simulated": true
+  },
+  "device_class": "phone",
+  "tier": "tiny",
+  "alias": "LFM3-1.7B-Uncensored",
+  "model_path": "/workspace/CoWork-OS-AI-OS/models/LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf",
+  "ctx_size": 8192,
+  "role": "always-on",
+  "reason": "phone-class host (arm64, no GPU, under 10 GB RAM); capped at tiny"
+}
