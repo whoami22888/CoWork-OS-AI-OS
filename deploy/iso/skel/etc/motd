@@ -1,0 +1,6 @@
+
+  Jarvis_liquid_agent  —  live session
+  llama-server  http://127.0.0.1:8080/v1
+  Chat:         jarvis-chat "your request"
+  Approval/permission engine is ON (ask_for_approval).
+

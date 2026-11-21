@@ -1,0 +1,13 @@
+[Unit]
+Description=Jarvis first boot (persona, LFM3 fetch, workspace)
+After=network-online.target live-config.service
+Wants=network-online.target
+ConditionPathExists=!/var/lib/jarvis/first-boot-done
+
+[Service]
+Type=oneshot
+ExecStart=/opt/jarvis/bin/first-boot.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

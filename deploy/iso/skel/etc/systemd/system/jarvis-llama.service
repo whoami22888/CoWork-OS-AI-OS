@@ -1,0 +1,17 @@
+[Unit]
+Description=Jarvis llama.cpp server (adaptive local GGUF)
+After=jarvis-first-boot.service live-config.service network-online.target
+Wants=jarvis-first-boot.service
+# first-boot is ConditionPathExists; on later boots it is skipped, so this still starts.
+
+[Service]
+Type=simple
+ExecStart=/opt/jarvis/bin/start-llama.sh
+Restart=on-failure
+RestartSec=3
+User=user
+Group=user
+# llama-server binds 127.0.0.1 only (see start-llama.sh).
+
+[Install]
+WantedBy=multi-user.target

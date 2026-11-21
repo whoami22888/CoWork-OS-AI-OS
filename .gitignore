@@ -216,3 +216,11 @@ tools/llama.cpp/*.tar.gz
 proofs/phase1/cowork-data/
 proofs/phase1/npm-install.log
 proofs/phase1/build-cli.log
+
+# Live ISO / Windows portable build output (ISOs, caches, bundled GGUFs)
+deploy/iso/.build/
+deploy/iso/.cache/
+deploy/iso/dist/
+deploy/windows/.cache/
+deploy/windows/dist/
+*.iso

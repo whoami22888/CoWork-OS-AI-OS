@@ -1,0 +1,17 @@
+[Unit]
+Description=Jarvis CoWork headless (approval engine on)
+After=jarvis-llama.service
+Requires=jarvis-llama.service
+
+[Service]
+Type=simple
+ExecStart=/opt/jarvis/bin/start-cowork.sh
+Restart=on-failure
+RestartSec=5
+User=user
+Group=user
+Environment=COWORK_APPROVAL_PROMPTS=on
+WorkingDirectory=/home/user/jarvis-workspace
+
+[Install]
+WantedBy=multi-user.target

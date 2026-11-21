@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Interactive / one-shot CoWork CLI with the Jarvis persona and approval engine on.
+set -euo pipefail
+export PATH="/opt/jarvis/node/bin:/opt/jarvis/bin:${PATH}"
+export LLAMA_BASE_URL="${LLAMA_BASE_URL:-http://127.0.0.1:8080/v1}"
+export COWORK_APPROVAL_PROMPTS="${COWORK_APPROVAL_PROMPTS:-on}"
+WS="${COWORK_WORKSPACE:-/home/user/jarvis-workspace}"
+mkdir -p "$WS"
+cd "$WS"
+NODE=/opt/jarvis/node/bin/node
+CLI=/opt/jarvis/cowork/bin/cowork-cli.js
+if [[ $# -eq 0 ]]; then
+  echo "Jarvis_liquid_agent  —  local GGUF, approval engine ON"
+  echo "Usage: jarvis-chat \"your request\""
+  echo "llama-server: $LLAMA_BASE_URL"
+  if [[ -f /run/jarvis/selection.json ]]; then
+    python3 -m json.tool /run/jarvis/selection.json
+  fi
+  exec "$NODE" "$CLI" --help
+fi
+exec "$NODE" "$CLI" run "$*" --access-profile ask_for_approval

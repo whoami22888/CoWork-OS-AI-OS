@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+# Enable Jarvis stack on first boot. Services stay off until the
+# systemd units are present in the chroot (copied via includes.chroot).
+if [ -d /etc/systemd/system ]; then
+  systemctl enable jarvis-first-boot.service 2>/dev/null || true
+  systemctl enable jarvis-llama.service 2>/dev/null || true
+  systemctl enable jarvis-cowork.service 2>/dev/null || true
+fi
+# live user can sudo without a password so first-boot / service helpers work.
+if [ -d /etc/sudoers.d ]; then
+  printf 'user ALL=(ALL) NOPASSWD: ALL\n' > /etc/sudoers.d/live-user
+  chmod 440 /etc/sudoers.d/live-user
+fi
+ldconfig || true

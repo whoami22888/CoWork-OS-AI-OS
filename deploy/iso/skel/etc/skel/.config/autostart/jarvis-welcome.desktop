@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Jarvis status
+Exec=xfce4-terminal --title=Jarvis -e "bash -lc 'echo Jarvis_liquid_agent live session; echo; systemctl --no-pager --full status jarvis-llama.service jarvis-cowork.service || true; echo; echo Run: jarvis-chat \"introduce yourself\"; echo Approval/permission engine is ON.; exec bash'"
+X-GNOME-Autostart-enabled=true

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Jarvis Chat
+Comment=Talk to Jarvis_liquid_agent (local GGUF, approval on)
+Exec=xfce4-terminal -e "bash -lc 'jarvis-chat; echo; read -p \"Press Enter to close…\"'"
+Icon=utilities-terminal
+Terminal=false
+Categories=Utility;
