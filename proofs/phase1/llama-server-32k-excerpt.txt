@@ -1,0 +1,4 @@
+0.00.012.375 I srv    load_model: loading model '/workspace/CoWork-OS-AI-OS/models/LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf'
+0.01.057.224 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'
+0.01.060.191 I srv  server_run_i: model loaded
+0.01.060.198 I srv  server_on_li: listening on http://127.0.0.1:8080

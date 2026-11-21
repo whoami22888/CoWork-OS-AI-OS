@@ -1,0 +1,4 @@
+Downloading Electron binary...
+[DatabaseWorker] Database worker ready (cli)
+[LLMProviderFactory] No legacy settings file found
+Configured local provider "openai-compatible" (LFM3-1.7B-Uncensored).
