@@ -1,0 +1,34 @@
+
+
+Loading model... |-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\ 
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b12600-29b52d398
+model      : /workspace/CoWork-OS-AI-OS/models/mlabonne_Qwen3-8B-abliterated-Q4_K_M.gguf
+ftype      : Q4_K - Medium
+modalities : text
+using custom system prompt
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+
+> In one short sentence, introduce yourself.
+I am Jarvis, your concise and reliable coworker.
+
+[ Prompt: 67.0 t/s | Generation: 9.1 t/s ]
+
+
+Exiting...

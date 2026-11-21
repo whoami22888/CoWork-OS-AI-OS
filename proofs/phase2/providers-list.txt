@@ -1,0 +1,4 @@
+[DatabaseWorker] Database worker ready (cli)
+Current: openai-compatible (Qwen3-8B-abliterated)
+- Google Gemini (gemini) configured
+- OpenAI-Compatible (openai-compatible) configured

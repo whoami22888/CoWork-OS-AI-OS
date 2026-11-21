@@ -1,0 +1,2 @@
+[DatabaseWorker] Database worker ready (cli)
+Configured local provider "openai-compatible" (Qwen3-8B-abliterated).

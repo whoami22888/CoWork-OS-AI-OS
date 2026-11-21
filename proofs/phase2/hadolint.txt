@@ -1,0 +1,4 @@
+/workspace/CoWork-OS-AI-OS/Dockerfile:13 DL3008 warning: Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
+/workspace/CoWork-OS-AI-OS/Dockerfile.node:8 DL3008 warning: Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
+/workspace/CoWork-OS-AI-OS/Dockerfile.node:26 DL3059 info: Multiple consecutive `RUN` instructions. Consider consolidation.
+/workspace/CoWork-OS-AI-OS/Dockerfile.node:34 DL3008 warning: Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`

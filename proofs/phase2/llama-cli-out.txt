@@ -1,0 +1,37 @@
+
+
+Loading model... |-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/ 
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b12600-29b52d398
+model      : /workspace/CoWork-OS-AI-OS/models/mlabonne_Qwen3-8B-abliterated-Q4_K_M.gguf
+ftype      : Q4_K - Medium
+modalities : text
+using custom system prompt
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+
+> In one short sentence, introduce yourself.
+
+[Start thinking]
+
+Okay, let's see. The user wants me to introduce myself in one short sentence. As Jarvis, I should mention my role and maybe my traits. Let me think... Oh right, I'm an AI assistant, concise, and a helpful coworker. Let me make sure to include those aspects. Alright, I need to keep it brief but informative. Let me check the example response
+
+[ Prompt: 60.7 t/s | Generation: 5.4 t/s ]
+
+
+Exiting...

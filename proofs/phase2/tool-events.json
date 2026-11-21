@@ -1,0 +1,201 @@
+{
+  "task": {
+    "id": "3bfbf69d-0c18-43e9-8c25-3bc7609ff867",
+    "status": "blocked",
+    "terminal_status": "awaiting_approval"
+  },
+  "approvals": [
+    {
+      "id": "c105f0d8-76a6-455f-a16f-9dc3e5a0b830",
+      "task_id": "3bfbf69d-0c18-43e9-8c25-3bc7609ff867",
+      "type": "external_file_access",
+      "description": "Allow write_file to access the requested resource?",
+      "status": "pending",
+      "details": "{\"tool\":\"write_file\",\"params\":{\"path\":\"/workspace/hello-from-jarvis-8b.txt\",\"content\":\"Consider it done.\"},\"path\":\"/workspace/hello-from-jarvis-8b.txt\",\"paths\":[\"/workspace/hello-from-jarvis-8b.txt\"],\"pathOperations\":[{\"path\":\"/workspace/hello-from-jarvis-8b.txt\",\"operation\":\"write\"}],\"operation\":\"write\",\"reason\":\"This operation requires explicit consent at the active access boundary.\",\"permissionPrompt\":{\"scope\":{\"kind\":\"path\",\"path\":\"/workspace/hello-from-jarvis-8b.txt\",\"toolName\":\"write_file\"},\"reason\":{\"type\":\"other\",\"summary\":\"This operation requires explicit consent at the active access boundary.\",\"metadata\":{\"accessApprovalPolicy\":\"on-request\",\"reviewer\":\"user\"}},\"scopePreview\":\"write_file on path /workspace/hello-from-jarvis-8b.txt\",\"suggestedActions\":[{\"action\":\"deny_once\",\"label\":\"Deny once\",\"effect\":\"deny\"},{\"action\":\"allow_once\",\"label\":\"Allow once\",\"effect\":\"allow\"},{\"action\":\"deny_session\",\"label\":\"Deny for session\",\"effect\":\"deny\",\"destination\":\"session\"},{\"action\":\"allow_session\",\"label\":\"Allow for session\",\"effect\":\"allow\",\"destination\":\"session\"},{\"action\":\"deny_workspace\",\"label\":\"Deny for workspace\",\"effect\":\"deny\",\"destination\":\"workspace\"},{\"action\":\"allow_workspace\",\"label\":\"Allow for workspace\",\"effect\":\"allow\",\"destination\":\"workspace\"},{\"action\":\"deny_recurring\",\"label\":\"Deny recurring\",\"effect\":\"deny\",\"destination\":\"recurring\"},{\"action\":\"allow_recurring\",\"label\":\"Allow recurring\",\"effect\":\"allow\",\"destination\":\"recurring\"},{\"action\":\"deny_profile\",\"label\":\"Deny for profile\",\"effect\":\"deny\",\"destination\":\"profile\"},{\"action\":\"allow_profile\",\"label\":\"Allow for profile\",\"effect\":\"allow\",\"destination\":\"profile\"}],\"securityContext\":{\"directSource\":{\"path\":\"/workspace/hello-from-jarvis-8b.txt\",\"sourceKind\":\"workspace_native\",\"trustLevel\":\"trusted\"},\"recentUntrustedContentRead\":false}},\"authorization\":{\"version\":1,\"key\":\"e905eb2312d7ca9491bbea9668a126add28db83f04fbfb66b42205f4677a0f4f\"},\"accessProfile\":{\"id\":\"ask_for_approval\",\"requestedId\":\"ask...[truncated]"
+    }
+  ],
+  "events": [
+    {
+      "seq": 43,
+      "legacy": "required_tool_inference_decision",
+      "payload": {
+        "taskId": "3bfbf69d-0c18-43e9-8c25-3bc7609ff867",
+        "stepId": "1",
+        "requiredTools": [
+          "run_command",
+          "write_file"
+        ],
+        "mode": "mutation_required",
+        "contractReason": "step_requires_artifact_mutation",
+        "verificationMode": "none",
+        "inferredCues": {
+          "hasWriteIntent": true,
+          "hasReadOnlyIntent": false,
+          "hasSummaryCue": false,
+          "scaffoldIntent": false,
+          "hasArtifactCue": true,
+          "hasArtifactExtensionMention": true,
+          "hasExplicitDirectoryCue": false,
+          "hasNonRootParent": false,
+          "targetPathCount": 1,
+          "artifactPreparationDeferred": false
+        },
+        "targetPaths": [
+          "hello-from-jarvis-8b.txt"
+        ],
+        "legacyType": "required_tool_inference_decision"
+      }
+    },
+    {
+      "seq": 49,
+      "legacy": "tool_call",
+      "payload": {
+        "tool": "write_file",
+        "input": {
+          "path": "/workspace/hello-from-jarvis-8b.txt",
+          "content": "Consider it done."
+        },
+        "toolUseId": "g3rY2o7cIjy3JZzNlKHKxA3f3HUAPlT6",
+        "toolCallIndex": 1,
+        "toolBatchPhase": "step",
+        "groupId": "tools:step:1:1795231079944:3",
+        "legacyType": "tool_call"
+      }
+    },
+    {
+      "seq": 55,
+      "legacy": "approval_requested",
+      "payload": {
+        "approval": {
+          "taskId": "3bfbf69d-0c18-43e9-8c25-3bc7609ff867",
+          "type": "external_file_access",
+          "description": "Allow write_file to access the requested resource?",
+          "details": {
+            "tool": "write_file",
+            "params": {
+              "path": "/workspace/hello-from-jarvis-8b.txt",
+              "content": "Consider it done."
+            },
+            "path": "/workspace/hello-from-jarvis-8b.txt",
+            "paths": [
+              "/workspace/hello-from-jarvis-8b.txt"
+            ],
+            "pathOperations": [
+              {
+                "path": "/workspace/hello-from-jarvis-8b.txt",
+                "operation": "write"
+              }
+            ],
+            "operation": "write",
+            "reason": "This operation requires explicit consent at the active access boundary.",
+            "permissionPrompt": {
+              "scope": {
+                "kind": "path",
+                "path": "/workspace/hello-from-jarvis-8b.txt",
+                "toolName": "write_file"
+              },
+              "reason": {
+                "type": "other",
+                "summary": "This operation requires explicit consent at the active access boundary.",
+                "metadata": {
+                  "accessApprovalPolicy": "on-request",
+                  "reviewer": "user"
+                }
+              },
+              "matchedRule": null,
+              "scopePreview": "write_file on path /workspace/hello-from-jarvis-8b.txt",
+              "suggestedActions": [
+                {
+                  "action": "deny_once",
+                  "label": "Deny once",
+                  "effect": "deny"
+                },
+                {
+                  "action": "allow_once",
+                  "label": "Allow once",
+                  "effect": "allow"
+                },
+                {
+                  "action": "deny_session",
+                  "label": "Deny for session",
+                  "effect": "deny",
+                  "destination": "session"
+                },
+                {
+                  "action": "allow_session",
+                  "label": "Allow for session",
+                  "effect": "allow",
+                  "destination": "session"
+                },
+                {
+                  "action": "deny_workspace",
+                  "label": "Deny for workspace",
+                  "effect": "deny",
+                  "destination": "workspace"
+                },
+                {
+                  "action": "allow_workspace",
+                  "label": "Allow for workspace",
+                  "effect": "allow",
+                  "destination": "workspace"
+                },
+                {
+                  "action": "deny_recurring",
+                  "label": "Deny recurring",
+                  "effect": "deny",
+                  "destination": "recurring"
+                },
+                {
+                  "action": "allow_recurring",
+                  "label": "Allow recurring",
+                  "effect": "allow",
+                  "destination": "recurring"
+                },
+                {
+                  "action": "deny_profile",
+                  "label": "Deny for profile",
+                  "effect": "deny",
+                  "destination": "profile"
+                },
+                {
+                  "action": "allow_profile",
+                  "label": "Allow for profile",
+                  "effect": "allow",
+                  "destination": "profile"
+                }
+              ],
+              "securityContext": {
+                "directSource": {
+                  "path": "/workspace/hello-from-jarvis-8b.txt",
+                  "sourceKind": "workspace_native",
+                  "trustLevel": "trusted"
+                },
+                "recentUntrustedContentRead": false
+              }
+            },
+            "authorization": {
+              "version": 1,
+              "key": "e905eb2312d7ca9491bbea9668a126add28db83f04fbfb66b42205f4677a0f4f"
+            },
+            "accessProfile": {
+              "id": "ask_for_approval",
+              "requestedId": "ask_for_approval",
+              "sandbox": "workspace-write",
+              "approval": "on-request",
+              "reviewer": "user",
+              "network": "on-request",
+              "adminConstrained": false,
+              "profileUnavailable": false,
+              "profileScoped": false,
+              "constraintReason": null
+            }
+          },
+          "status": "pending",
+          "requestedAt": 1795231080000,
+          "id": "c105f0d8-76a6-455f-a16f-9dc3e5a0b830"
+        },
+        "legacyType": "approval_requested"
+      }
+    }
+  ]
+}
