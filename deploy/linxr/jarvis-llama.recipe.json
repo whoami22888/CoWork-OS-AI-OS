@@ -1,0 +1,24 @@
+{
+  "id": "jarvis-lfm3-llama",
+  "name": "Jarvis CoWork \u2014 LFM3 (llama.cpp)",
+  "category": "AI & ML",
+  "type": "script",
+  "description": "Start Jarvis's always-on LFM3 1.7B model with llama.cpp (OpenAI-compatible API on port 8080) inside the Linxr Alpine VM. Defaults to the tiny phone-class tier. CoWork approvals stay off this recipe \u2014 this is inference only.",
+  "author": "Whoami / CoWork OS",
+  "version": "0.3.0",
+  "iconCodePoint": 58640,
+  "iconFontFamily": "MaterialIcons",
+  "image": null,
+  "command": [],
+  "ports": [
+    {
+      "host": 8080,
+      "container": 8080
+    }
+  ],
+  "env": [],
+  "network": "host",
+  "script": "set -eu\nMODEL_DIR=/mnt/sdcard/JarvisModels\nMODEL_FILE=LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf\nMODEL_PATH=$MODEL_DIR/$MODEL_FILE\nIMAGE=ghcr.io/ggml-org/llama.cpp:server\nmkdir -p \"$MODEL_DIR\"\nif command -v apk >/dev/null 2>&1; then apk add --no-cache docker docker-cli curl ca-certificates || true; fi\nif command -v rc-service >/dev/null 2>&1; then rc-service docker start || true; fi\ni=0; while [ $i -lt 30 ]; do docker info >/dev/null 2>&1 && break; i=$((i+1)); sleep 1; done\nif ! docker info >/dev/null 2>&1; then echo 'Docker is not ready. Enable the Docker engine in Linxr and retry.'; exit 1; fi\nif [ ! -f \"$MODEL_PATH\" ]; then\n  echo \"Missing $MODEL_PATH\"\n  echo \"Copy LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf to Android /storage/emulated/0/LinxrShare/JarvisModels/ then retry.\"\n  exit 1\nfi\ndocker pull --platform linux/arm64 \"$IMAGE\"\nARCH=$(docker inspect \"$IMAGE\" --format '{{.Architecture}}' 2>/dev/null || echo unknown)\nif [ \"$ARCH\" != \"arm64\" ] && [ \"$ARCH\" != \"aarch64\" ]; then echo \"Refusing image arch $ARCH (need arm64)\"; exit 1; fi\ndocker rm -f jarvis-llama >/dev/null 2>&1 || true\ndocker run -d --name jarvis-llama --restart unless-stopped --network host --platform linux/arm64 -v \"$MODEL_DIR\":/models:ro \"$IMAGE\" -m /models/$MODEL_FILE --host 0.0.0.0 --port 8080 --alias LFM3-1.7B-Uncensored --ctx-size 8192 --parallel 1\necho 'Jarvis llama-server is starting on port 8080. Open http://localhost:8080 from Chrome on the phone.'\n",
+  "notes": "Place LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf in Android /storage/emulated/0/LinxrShare/JarvisModels/ (VM: /mnt/sdcard/JarvisModels/) before deploying. Linxr already forwards port 8080. Open http://localhost:8080 in Chrome. Do not import this as a replacement for the official Ollama recipe \u2014 use that path only if you want Ollama on 11434. The 8B model is not started here. CoWork is a later, RAM-heavy opt-in (see deploy/linxr/README.md).",
+  "isCustom": true
+}

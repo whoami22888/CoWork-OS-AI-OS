@@ -22,7 +22,11 @@
       "min_vram_mb": 0,
       "ctx_size": 8192,
       "notes": "Liquid AI LFM3 1.7B Q4_K_M. Always-on / phone tier. Default ctx is 8192 for 8 GB-class devices; desktop may raise ctx via selector.",
-      "ctx_size_desktop": 32768
+      "ctx_size_desktop": 32768,
+      "hf_repo": "AtomicChat/LFM3-1.7B-Uncensored-GGUF",
+      "hf_file": "LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf",
+      "sha256": "b22df65673b54ed326f18f74826d76f3b65dadc237ffd6306cd52be04544827d",
+      "size_bytes": 1132208000
     },
     {
       "id": "main",

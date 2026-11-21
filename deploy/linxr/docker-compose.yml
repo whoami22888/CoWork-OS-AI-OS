@@ -1,0 +1,89 @@
+# Jarvis on Linxr (Alpine VM, linux/arm64, CPU-only).
+# Default stack is llama-server + LFM3 1.7B. CoWork is an optional profile
+# because the Electron-based image is heavy for an 8 GB phone + QEMU TCG.
+#
+#   # inside the Linxr Alpine VM, after the GGUF is in /mnt/sdcard/JarvisModels
+#   docker compose -f docker-compose.yml up -d
+#   docker compose -f docker-compose.yml --profile cowork up -d   # optional, RAM-hungry
+#
+# Linxr already forwards host port 8080 into the VM. Open
+# http://localhost:8080 from Chrome on the phone.
+#
+# This file was linted as YAML only. Images were not pulled or run here
+# (no arm64 Docker daemon on the development box). Verify on the S23:
+#   docker inspect ghcr.io/ggml-org/llama.cpp:server --format '{{.Architecture}}'
+# must print arm64.
+
+name: jarvis-linxr
+
+services:
+  llama:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    platform: linux/arm64
+    restart: unless-stopped
+    network_mode: host
+    command:
+      - -m
+      - /models/${JARVIS_MODEL_FILE:-LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+      - --alias
+      - ${JARVIS_MODEL_ALIAS:-LFM3-1.7B-Uncensored}
+      - --ctx-size
+      - "${JARVIS_CTX:-8192}"
+      - --parallel
+      - "1"
+    volumes:
+      - ${JARVIS_MODELS_DIR:-/mnt/sdcard/JarvisModels}:/models:ro
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc 'exec 3<>/dev/tcp/127.0.0.1/8080'"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 90s
+    security_opt:
+      - no-new-privileges:true
+    # Do not raise this on a phone. 8B is an explicit opt-in, not the default.
+
+  cowork:
+    profiles: ["cowork"]
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      platforms:
+        - linux/arm64
+    platform: linux/arm64
+    restart: unless-stopped
+    network_mode: host
+    depends_on:
+      llama:
+        condition: service_healthy
+    environment:
+      COWORK_USER_DATA_DIR: /data
+      COWORK_BOOTSTRAP_WORKSPACE_PATH: /workspace
+      COWORK_BOOTSTRAP_WORKSPACE_NAME: main
+      COWORK_IMPORT_ENV_SETTINGS: "1"
+      COWORK_CONTROL_PLANE_HOST: 0.0.0.0
+      COWORK_CONTROL_PLANE_PORT: "18789"
+      COWORK_CONTROL_PLANE_BIND_CONTEXT: container
+      COWORK_APPROVAL_PROMPTS: "on"
+      LLAMA_BASE_URL: http://127.0.0.1:8080/v1
+      JARVIS_MODEL_ALIAS: ${JARVIS_MODEL_ALIAS:-LFM3-1.7B-Uncensored}
+    volumes:
+      - cowork_data:/data
+      - cowork_workspace:/workspace
+      - ../../resources/jarvis-persona:/persona:ro
+    entrypoint:
+      - /usr/local/bin/docker-entrypoint.sh
+      - /app/deploy/jarvis/entrypoint-configure.sh
+    command: ["sh", "-lc", "xvfb-run -a node bin/coworkd.js"]
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  cowork_data:
+  cowork_workspace:

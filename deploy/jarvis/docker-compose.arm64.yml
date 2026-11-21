@@ -1,0 +1,32 @@
+# Override for linux/arm64 hosts (Apple Silicon, Ampere, Linxr VM).
+# The b12600 Ubuntu x64 binaries in tools/llama.cpp/ will NOT run here.
+#
+#   docker compose -f deploy/jarvis/docker-compose.yml \
+#                  -f deploy/jarvis/docker-compose.arm64.yml up
+#
+# Needs on-device verification: this box has no arm64 Docker daemon.
+# Default model is LFM3 (tiny). The 8B GGUF is an opt-in, not a phone default.
+
+services:
+  llama:
+    platform: linux/arm64
+    image: ghcr.io/ggml-org/llama.cpp:server
+    command:
+      - -m
+      - /models/${JARVIS_MODEL_FILE:-LFM3-1.7B-Uncensored-AD-Q4_K_M.gguf}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+      - --alias
+      - ${JARVIS_MODEL_ALIAS:-LFM3-1.7B-Uncensored}
+      - --ctx-size
+      - "${JARVIS_CTX:-8192}"
+      - --parallel
+      - "1"
+
+  cowork:
+    platform: linux/arm64
+    environment:
+      JARVIS_MODEL_ALIAS: ${JARVIS_MODEL_ALIAS:-LFM3-1.7B-Uncensored}
+      COWORK_APPROVAL_PROMPTS: "on"
